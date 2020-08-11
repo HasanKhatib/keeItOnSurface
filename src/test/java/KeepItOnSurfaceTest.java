@@ -4,14 +4,15 @@ import org.mockito.Mockito;
 import surface.Position;
 import surface.Table;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class KeepItOnSurfaceTest {
 
     @Test
     public void ApplyLeftMovementShouldAffectXWhenFacingNorth() {
         Table table = Mockito.spy(new Table());
         Position position = new Position(1, 1);
-        Mockito.doReturn(4).when(table).getyDimension();
-        Mockito.doReturn(4).when(table).getxDimension();
+        Mockito.doReturn(4).when(table).getYDimension();
+        Mockito.doReturn(4).when(table).getXDimension();
         Assert.assertEquals(
                 table.applyMovementCommand(4, position).getPositionX(),
                 0);
@@ -21,8 +22,8 @@ public class KeepItOnSurfaceTest {
     public void ApplyForwardMovementShouldAffectYWhenFacingNorth() {
         Table table = Mockito.spy(new Table());
         Position position = new Position(1, 1);
-        Mockito.doReturn(4).when(table).getyDimension();
-        Mockito.doReturn(4).when(table).getxDimension();
+        Mockito.doReturn(4).when(table).getYDimension();
+        Mockito.doReturn(4).when(table).getXDimension();
         Assert.assertEquals(
                 table.applyMovementCommand(1, position).getPositionY(),
                 0);
@@ -32,8 +33,8 @@ public class KeepItOnSurfaceTest {
     public void ApplyBackwardMovementShouldAffectYAndDirectionWhenFacingSouth() {
         Table table = Mockito.spy(new Table());
         Position position = new Position(1, 1, 'S');
-        Mockito.doReturn(4).when(table).getyDimension();
-        Mockito.doReturn(4).when(table).getxDimension();
+        Mockito.doReturn(4).when(table).getYDimension();
+        Mockito.doReturn(4).when(table).getXDimension();
         Assert.assertEquals(
                 table.applyMovementCommand(2, position).getPositionY(),
                 0);
@@ -43,8 +44,8 @@ public class KeepItOnSurfaceTest {
     public void ShouldThrowExceptionWhenObjectOutOfSurface() {
         Table table = Mockito.spy(new Table());
         Position position = new Position(-1, 0);
-        Mockito.doReturn(4).when(table).getyDimension();
-        Mockito.doReturn(4).when(table).getxDimension();
+        Mockito.doReturn(4).when(table).getYDimension();
+        Mockito.doReturn(4).when(table).getXDimension();
         table.validatePosition(position);
     }
 }

@@ -25,6 +25,26 @@ public class Position {
         direction = Directions.NORTH.value;
     }
 
+    public void goWest(boolean changeDirection) {
+        this.direction = changeDirection ? Directions.WEST.value : this.direction;
+        this.positionX--;
+    }
+
+    public void goNorth(boolean changeDirection) {
+        this.direction = changeDirection ? Directions.NORTH.value : this.direction;
+        this.positionY--;
+    }
+
+    public void goEast(boolean changeDirection) {
+        this.direction = changeDirection ? Directions.EAST.value : this.direction;
+        this.positionX++;
+    }
+
+    public void goSouth(boolean changeDirection) {
+        this.direction = changeDirection ? Directions.SOUTH.value : this.direction;
+        this.positionY++;
+    }
+
     @Override
     public String toString() {
         return String.format("[%d, %d]", positionX, positionY);

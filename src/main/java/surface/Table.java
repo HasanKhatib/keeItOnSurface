@@ -61,58 +61,46 @@ public class Table implements Surface<Integer> {
         switch (position.getDirection()) {
             case 'N':
                 if (command == 1) {
-                    position.setPositionY(position.getPositionY() - 1);
-                    position.setDirection(Directions.NORTH.value);
+                    position.goNorth(true);
                 } else if (command == 2) {
-                    position.setPositionY(position.getPositionY() + 1);
+                    position.goSouth(false);
                 } else if (command == 3) {
-                    position.setPositionX(position.getPositionX() + 1);
-                    position.setDirection(Directions.EAST.value);
+                    position.goEast(true);
                 } else {
-                    position.setPositionX(position.getPositionX() - 1);
-                    position.setDirection(Directions.WEST.value);
+                    position.goWest(true);
                 }
                 break;
             case 'E':
                 if (command == 1) {
-                    position.setPositionX(position.getPositionX() + 1);
-                    position.setDirection(Directions.EAST.value);
+                    position.goEast(true);
                 } else if (command == 2) {
-                    position.setPositionX(position.getPositionX() - 1);
+                    position.goEast(false);
                 } else if (command == 3) {
-                    position.setPositionY(position.getPositionY() + 1);
-                    position.setDirection(Directions.SOUTH.value);
+                    position.goSouth(true);
                 } else {
-                    position.setPositionY(position.getPositionY() - 1);
-                    position.setDirection(Directions.NORTH.value);
+                    position.goNorth(true);
                 }
                 break;
             case 'S':
                 if (command == 1) {
-                    position.setPositionY(position.getPositionY() + 1);
-                    position.setDirection(Directions.SOUTH.value);
+                    position.goSouth(true);
                 } else if (command == 2) {
-                    position.setPositionY(position.getPositionY() - 1);
+                    position.goNorth(false);
                 } else if (command == 3) {
-                    position.setPositionX(position.getPositionX() - 1);
-                    position.setDirection(Directions.WEST.value);
+                    position.goWest(true);
                 } else {
-                    position.setPositionX(position.getPositionX() + 1);
-                    position.setDirection(Directions.EAST.value);
+                    position.goEast(true);
                 }
                 break;
             case 'W':
                 if (command == 1) {
-                    position.setPositionX(position.getPositionX() - 1);
-                    position.setDirection(Directions.WEST.value);
+                    position.goWest(true);
                 } else if (command == 2) {
-                    position.setPositionX(position.getPositionX() + 1);
+                    position.goEast(false);
                 } else if (command == 3) {
-                    position.setPositionY(position.getPositionY() - 1);
-                    position.setDirection(Directions.NORTH.value);
+                    position.goNorth(true);
                 } else {
-                    position.setPositionY(position.getPositionY() + 1);
-                    position.setDirection(Directions.SOUTH.value);
+                    position.goSouth(true);
                 }
                 break;
         }
@@ -122,17 +110,18 @@ public class Table implements Surface<Integer> {
     }
 
     public void validatePosition(Position objPosition) {
-        if (objPosition.getPositionX() < 0 || objPosition.getPositionX() >= getxDimension()
-                || objPosition.getPositionY() < 0 || objPosition.getPositionY() >= getyDimension()) {
+        if (objPosition.getPositionX() < 0 || objPosition.getPositionX() >= getXDimension()
+                || objPosition.getPositionY() < 0 || objPosition.getPositionY() >= getYDimension()) {
             System.out.println("[-1,-1]");
             throw new IndexOutOfBoundsException(String.format("Objects's position exceeded table dimensions! %s", objPosition.toString()));
         }
     }
-    public int getxDimension() {
+
+    public int getXDimension() {
         return xDimension;
     }
 
-    public int getyDimension() {
+    public int getYDimension() {
         return yDimension;
     }
 }
